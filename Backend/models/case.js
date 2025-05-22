@@ -44,6 +44,19 @@ const caseSchema = new mongoose.Schema({
         enum: ['lost', 'found'],
         default: 'lost',
         required: true
+    }, 
+    confirmationCode: {
+        type: String,
+        required: true,
+        unique: true 
+    },
+    foundArea: {
+        type: String,
+        required: false
+    },
+    foundDate: {
+        type: Date,
+        required: false
     }
 }, {
   timestamps: true 
