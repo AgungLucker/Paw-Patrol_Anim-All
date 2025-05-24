@@ -12,13 +12,15 @@ const upload = multer({ storage: storage });
 
 const UPLOADCARE_PUBLIC_KEY = process.env.UPLOADCARE_PUBLIC_KEY;
 
-// POST
+// POST (create case)
 router.post('/', upload.single('picture'), async (req, res) => {
     try {
         let imgUrl = '';
-        const confirmationCode = uuidv4().substring(0, 8); //kode buat konfirmasi update, close case
+        const confirmationCode = uuidv4().substring(0, 8); // kode buat konfirmasi update, close case
 
+        // cek req terima parameter gambar
         if (req.file) {
+            // mekanisme simpen gambar ke uploadcare
             try {
                 const file = await uploadFile(req.file.buffer, {
                     publicKey: UPLOADCARE_PUBLIC_KEY,
@@ -39,7 +41,7 @@ router.post('/', upload.single('picture'), async (req, res) => {
             confirmationCode: confirmationCode,
         };
         const newCase = new Case(newCaseData);
-        const savedCase = await newCase.save();
+        const savedCase = await newCase.save(); //kirim ke mongodb
 
         res.status(201).json(savedCase);
     } catch (err) {
@@ -59,7 +61,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-//PUT
+//PUT (update data buat update/close case), 
+//cek ada caseID, confirmationCode, parameter gambar, status -> (buat isi foundDate, foundArea kalau close Case)
 //TODO:
 
 module.exports = router;

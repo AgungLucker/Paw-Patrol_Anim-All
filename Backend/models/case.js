@@ -1,6 +1,7 @@
 
 const mongoose = require('mongoose');
 
+// atribut data di database mongodb
 const caseSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -39,6 +40,7 @@ const caseSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    // kalau close case statusnya jadi found
     status: {
         type: String,
         enum: ['lost', 'found'],
@@ -50,6 +52,7 @@ const caseSchema = new mongoose.Schema({
         required: true,
         unique: true 
     },
+    // foundArea, foundDate diinisialisasi di PUT,
     foundArea: {
         type: String,
         required: false
