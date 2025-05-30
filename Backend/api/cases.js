@@ -1,8 +1,9 @@
+// backend/api/cases.js
 const express = require('express');
 const router = express.Router();
 const Case = require('../models/case');
 const multer = require('multer');
-const { uploadFile } = require('@uploadcare/upload-client');
+const { uploadFile} = require('@uploadcare/upload-client'); 
 const { v4: uuidv4 } = require('uuid');
 const { body, validationResult } = require('express-validator'); 
 
@@ -12,7 +13,6 @@ const upload = multer({ storage: storage });
 
 
 const UPLOADCARE_PUBLIC_KEY = process.env.UPLOADCARE_PUBLIC_KEY;
-
 // POST (create case)
 router.post('/', upload.single('picture'), [
     body('name').isString().isLength({ min: 2 }).withMessage('Nama hewan minimal 2 karakter'),
@@ -78,9 +78,101 @@ router.get('/', async (req, res) => {
     }
 });
 
+// GET single case
+router.get('/:reportID', async (req, res) => {
+    try {
+        const {reportID} = req.params;
+        const caseItem = await Case.findOne({ reportID: reportID }).select('status');
+        if (!caseItem) {
+            return res.status(404).json({ message: 'Case tidak ditemukan' });
+        }
+        res.json(caseItem);
+    } catch (err) {
+        console.error("Error get single case:", err);
+        res.status(500).json({ message: err.message });
+    }
+});
+
 //PUT (update data buat update/close case), 
 //cek ada caseID, confirmationCode, parameter gambar, status -> (buat isi foundDate, foundArea kalau close Case)
 //TODO:
+router.put('/:reportID', upload.single('picture'), [
+    body('name').trim().optional(({ checkFalsy: true })).isString().isLength({ min: 2 }).withMessage('Nama hewan minimal 2 karakter'),
+    body('speciesType').trim().optional({ checkFalsy: true }).isString().notEmpty().withMessage('Species type harus berupa string dan tidak kosong'),
+    body('description').trim().optional(({ checkFalsy: true })).isString().notEmpty().withMessage('Deskripsi harus berupa string dan tidak kosong'),
+    body('area').trim().optional().isString().isLength({ min: 2 }).withMessage('Area harus berupa string minimal 2 karakter'),
+    body('ownerAddress').trim().optional(({ checkFalsy: true })).isString().notEmpty().withMessage('Alamat pemilik harus berupa string dan tidak kosong'),
+    body('ownerContact').trim().optional(({ checkFalsy: true })).isNumeric().isLength({ min: 10, max: 13 }).withMessage('Kontak pemilik harus berupa angka dengan panjang 10-13 digit'),
+    body('lostDate').optional(({ checkFalsy: true })).isISO8601().toDate().withMessage('lostDate harus dalam format ISO 8601'),
+
+    body('confirmationCode').trim().isString().notEmpty().withMessage('Confirmation code harus diisi'),
+    body('status').trim().optional(({ checkFalsy: true })).isIn(['lost', 'found', 'returned']).withMessage('status tidak valid'),
+    ], 
+    async(req, res) => {
+        // validasi input
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            const validationErrors = errors.array();
+            console.error("Validation errors:", validationErrors); // Ini akan tetap melog ke konsol server
+
+        }
+        try {
+            console.log('Received body:', req.body);
+    console.log('Received file:', req.file);
+
+            const {reportID} = req.params;
+            const {confirmationCode, ...reqUpdateData} = req.body;
+
+            // cari kasus berdasarkan reportID
+            const existingCase = await Case.findOne({reportID: reportID});
+            if (!existingCase) { //reportID tidak valid
+                return res.status(400).json({message: 'Case tidak ditemukan.'});
+            }
+
+            // validasi confirmationCode    
+            if (existingCase.confirmationCode != confirmationCode) {
+                return res.status(400).json({message: 'Confirmation code salah'});
+            }
+
+            const updatedData = {};
+            for (const key in reqUpdateData) {
+                if (reqUpdateData[key] !== '') {
+                    updatedData[key] = reqUpdateData[key];
+                }
+            }
+
+            let updatedPicUrl = existingCase.picture; // default pic
+            // upload picture ke uploadcare
+            if (req.file) { 
+                try {
+                    const file = await uploadFile(req.file.buffer, {
+                        publicKey: UPLOADCARE_PUBLIC_KEY,
+                        fileName: req.file.originalname,
+                    });
+                    updatedPicUrl = file.cdnUrl;
+                    updatedData.picture = updatedPicUrl;
+                } catch(err) {
+                    console.error("Error uploading picture to Uploadcare:", err.message);
+                    throw new Error('Gagal mengubah updated picture ke UploadCare!');
+                }
+            }
+
+
+
+            Object.assign(existingCase, updatedData); // salin modifikasi data ke data case yang diubah
+            const updatedCase = await existingCase.save(); // save ke mongodb
+
+            res.status(201).json({
+                message: 'Case updated successfully',
+                case: updatedCase
+            }); 
+        } catch (err) {
+            console.error("Error updating case:", err);
+            res.status(500).json({ message: err.message });
+        }
+
+
+})
 
 
 module.exports = router;

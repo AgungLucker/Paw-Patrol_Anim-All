@@ -1,0 +1,237 @@
+* {
+  box-sizing: border-box;
+}
+
+body  {
+    background-image: url(assets/wallpaperKucing.png);
+    background-size: cover;         
+    background-repeat: no-repeat; 
+    background-position: center;    
+    text-align: center;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 0px;
+    /*cursor: url(assets/cursor.png), auto;*/
+}
+
+.home_content {
+    padding-top: 40px;
+    min-height: calc(100vh - 150px); 
+}
+
+
+
+.sticky_header {
+    position: fixed; 
+    top: 0;
+    left: 0; 
+    width: 100vw; 
+    height: 50px;
+    background-color: #FF9F00;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 999; 
+}
+
+.navbar_logo {
+    height: 30px;
+    margin-right: auto;
+}
+
+.sticky_header ul {
+    list-style: none;
+    margin: 0;
+    padding: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    gap: 20px;
+}
+
+a{
+    color: #ffffff;
+    background-color: transparent;
+    text-decoration: none;
+    /*cursor: url(assets/cursor_hover.png), auto;*/ 
+}
+
+.sticky_header li a.active {
+    color: #000000; 
+    background-color: #ffffff; 
+    padding: 5px 10px;
+}
+
+
+.update_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    min-height: calc(100vh - 20px); /* 50px = tinggi header */
+    padding: 40px;
+}
+
+.update_box {
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    max-width: 500px;
+    padding: 20px 40px 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.update_title {
+    color: #392A54;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.update_title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #FF9F00;
+}
+
+form input, form textarea, form button {
+    width: 100%;
+     padding: 8px 12px;
+    margin: 5px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+}
+
+.form_row {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.form_row input {
+    flex: 1
+}
+
+.form_group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form_group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #392A54;
+}
+
+#status_found_button {
+    background-color: #FF9F00;
+    transition: background-color 0.3s ease;
+    color: black;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#status_found_button:hover {
+    background-color: #e28f00;
+}
+#status_found_button.active {
+    background-color: #4CAF50; 
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#picture {
+    width: fit-content; 
+    max-width: 250px;   
+    text-align: left;
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.submit_btn {
+    background-color: #392A54;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.submit_btn:hover {
+    background-color: #2e2342;
+}
+
+.popup_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup_content {
+  position: relative;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+popup_content h2 {
+  color: #3B0764;
+  margin-bottom: 15px;
+}
+
+.popup_content p {
+  color: #333;
+  font-weight: 300;
+}
+
+.close_btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+}
+
+.hidden {
+  display: none;
+}
+
+body.dark_bg {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+    url(assets/wallpaperKucing.png); 
+  background-size: cover;
+  background-position: center;
+  padding-top: 0
+}

@@ -55,15 +55,6 @@ const caseSchema = new mongoose.Schema({
         required: true,
         unique: true 
     },
-    // foundArea, foundDate diinisialisasi di Put (jika ada)
-    foundArea: {
-        type: String,
-        required: false
-    },
-    foundDate: {
-        type: Date,
-        required: false
-    }
 }, {
   timestamps: true 
 });

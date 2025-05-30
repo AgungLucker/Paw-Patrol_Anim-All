@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Home</title>
+    <link rel="stylesheet" href="updateCase.css">
+</head>
+<body>
+    <header class="sticky_header"> 
+        <img src="assets/logo.svg" alt="Logo" class="navbar_logo">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="addCase.html">Add Case</a></li>
+            <li><a href="updateCase.html" class="active"    >Update Case</a></li>
+            <li><a href="closeCase.html">Close Case</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="aboutUs.html">About Us</a></li>
+        </ul>
+    </header>
+
+    <main class="update_container">
+        <div class="update_box">
+            <h2 class="update_title">Update Form</h2>
+            <form id="update_form" enctype="multipart/form-data">
+                <div class="form_row">
+                    <div class="form_group">
+                        <label for="namaHewan">Nama Hewan-Spesies</label>
+                        <input type="text" id="namaHewan" name="speciesType">
+                    </div>
+                    <div class="form_group">
+                        <label for="namaHewan">Tanggal Hilang</label>
+                        <input type="date" id="tanggalHilang" name="lostDate">
+                    </div>
+                </div>
+                <label for="lokasiTerakhir">Lokasi terakhir</label>
+                <input type="text" placeholder="Lokasi Terakhir" name="area">
+                <label for="description">Deskripsi</label>
+                <textarea placeholder="Deskripsi" name="description" rows="2" ></textarea>
+                <div class="form_row">
+                    <div class="form_group">
+                        <label for="namaPemilik">Alamat pemilik</label>
+                        <input type="text" id="namaPemilik" name="ownerAddress">
+                    </div>
+                    <div class="form_group">
+                        <label for="kontak">Kontak pemilik</label>
+                        <input type="text" id="kontak" name="ownerContact">
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_group">
+                        <label for="IDCase">ID case</label>
+                        <input type="number" id="IDCase" name="IDCase" required>
+                    </div>
+                    <div class="form_group">
+                        <label for="confirmationCode">Kode unik</label>
+                        <input type="text" id="confirmationCode" name="confirmationCode" required>
+                    </div>
+                </div>
+                <div class="form_group">
+                    <label for="picture">Gambar hewan</label>
+                    <input type="file" id="picture" name="picture" accept="image/*" class="input_picture" />
+                </div>
+                <input type="hidden" id="status" name="status" value="lost"> 
+                <button type="button" id="status_found_button">Sudah ditemukan</button>
+                <button type="submit" class="submit_btn">Submit</button>
+            </form>
+        </div>
+    </main>
+    <div id="successPopUp" class="popup_overlay hidden">
+        <div class="popup_content">
+            <button class="close_btn" onclick="closeSuccessPopUp()">X</button>
+            <h2>Jawaban Kamu sudah berhasil diperbarui</h2>
+            <p>Terima kasih sudah mengajukan! Kami akan memproses secepatnya dan harap tunggu konfirmasi lebih lanjut dari kami.</p>
+        </div>
+    </div>
+
+    <script src="updateCase.js"></script>
+
+
+</body>
+</html>

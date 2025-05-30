@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Home</title>
+    <link rel="stylesheet" href="closeCase.css">
+</head>
+<body>
+    <header class="sticky_header"> 
+        <img src="assets/logo.svg" alt="Logo" class="navbar_logo">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="addCase.html">Add Case</a></li>
+            <li><a href="updateCase.html" >Update Case</a></li>
+            <li><a href="closeCase.html" class="active">Close Case</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="aboutUs.html">About Us</a></li>
+        </ul>
+    </header>
+
+    <main class="close_container">
+        <div class="close_box">
+            <h2 class="close_title">Close Form</h2>
+            <form id="close_form" enctype="multipart/form-data">
+                <div class="form_group">
+                    <div class="form_group">
+                        <label for="IDCase">Case ID</label>
+                        <input type="text" id="IDCase" name="IDCase" required>
+                    </div>
+                </div>
+                <div class="form_group">
+                     <div class="form_group">
+                        <label for="confirmationCode">Kode Unik</label>
+                        <input type="text" id="confirmationCode" name="confirmationCode" required>
+                    </div>
+                </div>
+                <p>Apakah kamu yakin untuk menutup Case?</p>
+                <button type="button" id="confirmation_btn">Ya saya yakin</button>
+                <button type="submit" class="submit_btn" disabled>Submit</button>
+            </form>
+        </div>
+    </main>
+    <div id="successPopUp" class="popup_overlay hidden">
+        <div class="popup_content">
+            <button class="close_btn" onclick="closeSuccessPopUp()">X</button>
+            <h2>Jawaban Kamu sudah berhasil tersimpan</h2>
+            <p>Terima kasih sudah mengajukan! Kami akan memproses secepatnya dan harap tunggu konfirmasi lebih lanjut dari kami.</p>
+        </div>
+    </div>
+
+    <script src="closeCase.js"></script>
+
+
+</body>
+</html>
