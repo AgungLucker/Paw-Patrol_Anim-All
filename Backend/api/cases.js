@@ -30,6 +30,8 @@ router.post('/', upload.single('picture'), [
             return res.status(400).json({ errors: errors.array()});
         }
         try {
+            console.log('Received body:', req.body);
+            console.log('Received file:', req.file);
             let imgUrl = '';
             const confirmationCode = uuidv4().substring(0, 8); // kode buat konfirmasi update, close case
 
@@ -94,8 +96,6 @@ router.get('/:reportID', async (req, res) => {
 });
 
 //PUT (update data buat update/close case), 
-//cek ada caseID, confirmationCode, parameter gambar, status -> (buat isi foundDate, foundArea kalau close Case)
-//TODO:
 router.put('/:reportID', upload.single('picture'), [
     body('name').trim().optional(({ checkFalsy: true })).isString().isLength({ min: 2 }).withMessage('Nama hewan minimal 2 karakter'),
     body('speciesType').trim().optional({ checkFalsy: true }).isString().notEmpty().withMessage('Species type harus berupa string dan tidak kosong'),
@@ -118,7 +118,7 @@ router.put('/:reportID', upload.single('picture'), [
         }
         try {
             console.log('Received body:', req.body);
-    console.log('Received file:', req.file);
+            console.log('Received file:', req.file);
 
             const {reportID} = req.params;
             const {confirmationCode, ...reqUpdateData} = req.body;

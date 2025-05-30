@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmationButton = document.getElementById('confirmation_btn');
     const submitButton = document.querySelector('#close_form .submit_btn');
 
+    // submitButton enabled kalau confirmationButton dipencet
     if (confirmationButton && submitButton) {
         let isConfirmed = false;
 
