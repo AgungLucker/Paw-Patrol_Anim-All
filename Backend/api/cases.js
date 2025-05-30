@@ -24,6 +24,7 @@ router.post('/', upload.single('picture'), [
     body('lostDate').isISO8601().toDate().withMessage('lostDate harus dalam format ISO 8601'),
     ], 
     async (req, res) => {
+        // validasi input
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array()});
@@ -45,9 +46,7 @@ router.post('/', upload.single('picture'), [
                     console.error("Error uploading to Uploadcare:", err.message);
                     throw new Error('Could not upload file to Uploadcare.');
                 }
-            } else {
-                imgUrl = 'https://via.placeholder.com/150?text=No+Image';
-            }
+            } 
 
             const newCaseData = {
                 ...req.body,
@@ -83,4 +82,7 @@ router.get('/', async (req, res) => {
 //cek ada caseID, confirmationCode, parameter gambar, status -> (buat isi foundDate, foundArea kalau close Case)
 //TODO:
 
+
 module.exports = router;
+
+

@@ -44,11 +44,6 @@ const caseSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    postDate: {
-        type: Date,
-        default: Date.now
-    },
-    // kalau close case statusnya jadi found
     status: {
         type: String,
         enum: ['lost', 'found', 'returned'],
