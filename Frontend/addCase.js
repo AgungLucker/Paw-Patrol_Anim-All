@@ -51,13 +51,17 @@ document.getElementById('add_form').addEventListener('submit', async function (e
         const data = await response.json();
 
         if (!response.ok) {
-            if (data && data.message) {
-                let errorMsg = data.message;
-                alert(errorMsg);
+            if (response.status === 400 && data.errors) {
+                let errorMessage = 'Gagal validasi input:\n';
+                data.errors.forEach(err => {
+                    errorMessage += `- ${err.msg}\n`; 
+                });
+                alert(errorMessage);
+                console.error('Validation errors:', data.errors);
             } else {
-                alert("Gagal membuat case:", data);
+                alert('Terjadi kesalahan: ' + (data.message || 'Unknown error.'));
+                console.error('Error:', data.errors);
             }
-            console.error("Gagal update:", data);
         } else {
             console.log("Response data:", data);
             const confirmationCode = data.case.confirmationCode; 

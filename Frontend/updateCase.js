@@ -87,8 +87,23 @@ document.getElementById('update_form').addEventListener('submit', async function
         const data = await response.json();
 
         if (!response.ok) {
-            alert("Gagal update:", data);
-            console.error("Gagal update:", data);
+            if (response.status === 400 && data.errors) {
+                let errorMessage = 'Gagal validasi input:\n';
+                data.errors.forEach(err => {
+                    errorMessage += `- ${err.msg}\n`; 
+                });
+                alert(errorMessage);
+                console.error('Validation errors:', data.errors);
+            } else if (response.status === 401) {   
+                alert(data.message);
+                console.error('Akses ditolak:', data);
+            } else if (response.status === 404) {
+                alert(data.message);
+                console.error('Terjadi kesalahan:', data);
+            } else {
+                alert('Gagal Update case: ' + (data.message || 'Unknown error.'));
+                console.error('Error:', data.errors);
+            }
         } else {
             console.log("Response data:", data);
             showSuccessPopUp();
