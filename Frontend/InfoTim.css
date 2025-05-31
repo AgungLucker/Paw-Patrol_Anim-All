@@ -1,0 +1,140 @@
+body.info_tim_bg {
+  
+  background-image:
+    linear-gradient(rgba(0, 77, 77, 0.65), rgba(0, 77, 77, 0.65)),
+    url(assets/wallpaperKucing.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  padding-top: 50px; 
+  font-family: 'Poppins', sans-serif;
+  color: #333; 
+}
+
+.info_tim_main_content {
+  padding: 40px 20px; 
+  text-align: center;
+  min-height: calc(100vh - 50px); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.info_tim_title {
+  font-size: 52px; 
+  color: #ffffff; 
+  font-weight: 700; 
+  margin-top: 20px; 
+  margin-bottom: 50px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+.team_cards_container {
+  display: flex;
+  justify-content: center; 
+  align-items: stretch;
+  flex-wrap: wrap; 
+  gap: 30px; 
+  max-width: 1100px; 
+  width: 100%; 
+}
+
+.team_card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 35px 25px;
+  width: 300px; /* Lebar tetap untuk setiap kartu */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team_card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.team_card_icon {
+  background-color: #00ACC1; 
+  color: #ffffff; 
+  font-size: 32px;
+  font-weight: bold;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%; 
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.team_card_name {
+  font-size: 22px;
+  color: #333333;
+  font-weight: 600; 
+  margin-bottom: 8px;
+}
+
+.team_card_role {
+  font-size: 16px;
+  color: #00796B; 
+  font-weight: 500; 
+  margin-bottom: 15px;
+}
+
+.team_card_description {
+  font-size: 14px;
+  color: #555555;
+  line-height: 1.6;
+}
+
+
+@media (max-width: 992px) {
+  .team_card {
+    width: calc(50% - 15px); 
+  }
+  .info_tim_title {
+    font-size: 44px;
+  }
+}
+
+@media (max-width: 768px) {
+  .info_tim_title {
+    font-size: 38px;
+    margin-bottom: 40px;
+  }
+  .team_card {
+    width: calc(100% - 20px); 
+    max-width: 350px; 
+  }
+  .team_cards_container {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .info_tim_title {
+    font-size: 32px;
+  }
+   .team_card {
+    padding: 25px 20px;
+  }
+  .team_card_icon {
+    width: 55px;
+    height: 55px;
+    font-size: 28px;
+  }
+  .team_card_name {
+    font-size: 20px;
+  }
+  .team_card_role {
+    font-size: 15px;
+  }
+  .team_card_description {
+    font-size: 13px;
+  }
+}
