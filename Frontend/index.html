@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <header class="sticky_header"> 
@@ -20,9 +20,117 @@
         </ul>
     </header>
 
-    <main class="home_content">
+    <main>
+        <section class="hero_section">
+            <div class="search_container">
+                <img src="assets/search_icon_custom.png" alt="Ikon Pencarian" class="search_icon_custom">
+                <input type="text" placeholder="Cat too beautiful !">
+            </div>
+            <button class="search_button_main">Search</button>
+        </section>
+
+        <section class="key_features_section">
+            <div class="feature_item">
+                <h3>Fast</h3>
+                <p>Allows for up to 1000 calls per minute.</p>
+            </div>
+            <div class="feature_item">
+                <h3>Optimized</h3>
+                <p>Continuous update and direction of interruption.</p>
+            </div>
+            <div class="feature_item">
+                <h3>Free</h3>
+                <p>And always remained so to allow the animals to be adopted more easily.</p>
+            </div>
+        </section>
+
+        <section class="our_advantages_section">
+            <h2>Our Advantages</h2>
+            <div class="advantages_content">
+                <div class="advantages_list">
+                    <div class="advantage_item">
+                        <img src="assets/icon_easy.png" alt="Ikon Mudah" class="advantage_icon">
+                        <div>
+                            <h4>Easy</h4>
+                            <p>An interface that is easy to use even for beginners.</p>
+                        </div>
+                    </div>
+                    <div class="advantage_item">
+                        <img src="assets/icon_intuitive.png" alt="Ikon Intuitif" class="advantage_icon">
+                        <div>
+                            <h4>Intuitive</h4>
+                            <p>An api usable even by non-developers.</p>
+                        </div>
+                    </div>
+                    <div class="advantage_item">
+                        <img src="assets/icon_flexible.png" alt="Ikon Fleksibel" class="advantage_icon">
+                        <div>
+                            <h4>Flexible</h4>
+                            <p>Can be integrated on several systems for all your needs.</p>
+                        </div>
+                    </div>
+                    <div class="advantage_item">
+                        <img src="assets/icon_reliable.png" alt="Ikon Andal" class="advantage_icon">
+                        <div>
+                            <h4>Reliable</h4>
+                            <p>You just have to see our statue page to understand why we are so appreciated.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="advantages_image">
+                    <img src="assets/laptop_pro_gaming.png" alt="Laptop Macbook Pro menampilkan kode">
+                </div>
+            </div>
+        </section>
     </main>
 
-
+    <footer class="site_footer">
+        <div class="footer_content_wrapper">
+            <div class="footer_logo_subscribe">
+                <img src="assets/logo.svg" alt="Logo Animall Footer" class="footer_logo">
+                <h4>Subscribe to our newsletter</h4>
+                <form class="subscribe_form">
+                    <input type="email" placeholder="Email address" required>
+                    <button type="submit" aria-label="Subscribe"><img src="assets/arrow_right.png" alt="Tombol subscribe"></button>
+                </form>
+            </div>
+            <div class="footer_links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Animall</a></li>
+                    <li><a href="#">API</a></li>
+                </ul>
+            </div>
+            <div class="footer_links">
+                <h4>About us</h4> <ul>
+                    <li><a href="#">Our Story</a></li> <li><a href="#our_advantages_section">Advantage</a></li>
+                </ul>
+            </div>
+            <div class="footer_social">
+                <h4>Follow Us</h4>
+                <div class="social_icons">
+                    <a href="#" aria-label="Facebook"><img src="assets/facebook_icon.png" alt="Facebook"></a>
+                    <a href="#" aria-label="Twitter"><img src="assets/twitter_icon.png" alt="Twitter"></a>
+                    <a href="#" aria-label="Instagram"><img src="assets/instagram_icon.png" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+        </footer>
+     <script>
+    const scrollToTopButton = document.getElementById('scroll_to_top_button');
+    if (scrollToTopButton) {
+        window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollToTopButton.style.display = "block";
+        } else {
+            scrollToTopButton.style.display = "none";
+        }
+    };
+    scrollToTopButton.onclick = function() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    };
+    }
+    </script> 
 </body>
 </html>
