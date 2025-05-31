@@ -27,6 +27,7 @@ router.post('/', upload.single('picture'), [
         // validasi input
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
+            console.error("Validation errors:", errors); 
             return res.status(400).json({ errors: errors.array()});
         }
         try {
@@ -64,7 +65,7 @@ router.post('/', upload.single('picture'), [
             });
         } catch (err) {
             console.error("Error save:", err);
-            res.status(400).json({ message: err.message, errors: err.errors });
+            res.status(500).json({ message: err.message, errors: err.errors });
         }
     }
 );
@@ -100,13 +101,13 @@ router.put('/:reportID', upload.single('picture'), [
     body('name').trim().optional(({ checkFalsy: true })).isString().isLength({ min: 2 }).withMessage('Nama hewan minimal 2 karakter'),
     body('speciesType').trim().optional({ checkFalsy: true }).isString().notEmpty().withMessage('Species type harus berupa string dan tidak kosong'),
     body('description').trim().optional(({ checkFalsy: true })).isString().notEmpty().withMessage('Deskripsi harus berupa string dan tidak kosong'),
-    body('area').trim().optional().isString().isLength({ min: 2 }).withMessage('Area harus berupa string minimal 2 karakter'),
-    body('ownerAddress').trim().optional(({ checkFalsy: true })).isString().notEmpty().withMessage('Alamat pemilik harus berupa string dan tidak kosong'),
-    body('ownerContact').trim().optional(({ checkFalsy: true })).isNumeric().isLength({ min: 10, max: 13 }).withMessage('Kontak pemilik harus berupa angka dengan panjang 10-13 digit'),
-    body('lostDate').optional(({ checkFalsy: true })).isISO8601().toDate().withMessage('lostDate harus dalam format ISO 8601'),
+    body('area').trim().optional({ checkFalsy: true }).isString().isLength({ min: 2 }).withMessage('Area harus berupa string minimal 2 karakter'),
+    body('ownerAddress').trim().optional({ checkFalsy: true }).isString().notEmpty().withMessage('Alamat pemilik harus berupa string dan tidak kosong'),
+    body('ownerContact').trim().optional({ checkFalsy: true }).isNumeric().isLength({ min: 10, max: 13 }).withMessage('Kontak pemilik harus berupa angka dengan panjang 10-13 digit'),
+    body('lostDate').optional({ checkFalsy: true }).isISO8601().toDate().withMessage('lostDate harus dalam format ISO 8601'),
 
     body('confirmationCode').trim().isString().notEmpty().withMessage('Confirmation code harus diisi'),
-    body('status').trim().optional(({ checkFalsy: true })).isIn(['lost', 'found', 'returned']).withMessage('status tidak valid'),
+    body('status').trim().optional({ checkFalsy: true }).isIn(['lost', 'found', 'returned']).withMessage('status tidak valid'),
     ], 
     async(req, res) => {
         // validasi input
@@ -114,6 +115,7 @@ router.put('/:reportID', upload.single('picture'), [
         if (!errors.isEmpty()) {
             const validationErrors = errors.array();
             console.error("Validation errors:", validationErrors); // Ini akan tetap melog ke konsol server
+            return res.status(400).json({ errors: validationErrors});
 
         }
         try {
@@ -126,12 +128,12 @@ router.put('/:reportID', upload.single('picture'), [
             // cari kasus berdasarkan reportID
             const existingCase = await Case.findOne({reportID: reportID});
             if (!existingCase) { //reportID tidak valid
-                return res.status(400).json({message: 'Case tidak ditemukan.'});
+                return res.status(404).json({message: 'Case tidak ditemukan.'});
             }
 
             // validasi confirmationCode    
             if (existingCase.confirmationCode != confirmationCode) {
-                return res.status(400).json({message: 'Confirmation code salah'});
+                return res.status(401).json({message: 'Confirmation code salah'});
             }
 
             const updatedData = {};
