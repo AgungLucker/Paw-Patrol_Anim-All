@@ -1,530 +1,227 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: 'Poppins', sans-serif;
-    color: #333; 
-    background-color: #FFFFFF; 
-    line-height: 1.6;
-    padding-top: 70px; 
+    background-color: #EFEFEF; 
+    overflow-y: auto; 
+    padding-top: 50px; 
 }
 
-.search_icon_custom {
-    margin-right: 12px;
-    width: 50px; 
-    height: 50px; 
-    object-fit: contain; 
-}
-.sticky_header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px; 
-    background-color: #FF9F00; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px; 
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.navbar_logo {
-    height: 35px; 
-}
-
-.sticky_header ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    gap: 25px; 
-}
-
-.sticky_header ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-weight: 500; 
-    font-size: 0.95rem;
-}
-
-.sticky_header ul li a:hover,
-.sticky_header ul li a.active {
-    background-color: rgba(255, 255, 255, 0.9); 
-    color: #FF9F00;
-}
-
-/* Tombol Sign up / Sign in di header */
-.sticky_header ul li.auth_buttons a {
-    background-color: transparent;
-    border: 1px solid #fff;
-    padding: 6px 15px;
-}
-.sticky_header ul li.auth_buttons a:hover {
-    background-color: #fff;
-    color: #FF9F00;
-}
-
-
-
-/* Main content */
-main {
-    min-height: calc(100vh - 70px - 200px); 
-}
-
-/* Hero Section */
-.hero_section {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    min-height: 350px;
-    padding: 60px 20px;
-    text-align: center;
-    background-color: #f4f7f6; 
-}
-
-.search_container {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    padding: 12px 20px; 
-    border-radius: 30px; 
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    width: 100%;
-    max-width: 550px; 
-    margin-bottom: 25px;
-}
-
-.search_icon_svg {
-    margin-right: 12px;
-    color: #777;
-}
-
-.search_container input[type="text"] {
-    flex-grow: 1;
-    border: none;
-    outline: none;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    color: #555;
-}
-.search_container input[type="text"]::placeholder {
-    color: #aaa;
-}
-
-.search_button_main { 
-    background-color: #2A3B47; 
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 10px rgba(42, 59, 71, 0.2);
-}
-
-.search_button_main:hover {
-    background-color: #1e2a33;
-}
-
-/* Key Features Section */
-.key_features_section {
-    display: flex;
-    justify-content: space-around;
-    align-items: stretch;
-    background-color: #2A3B47; 
-    color: #ffffff;
-    padding: 60px 40px; 
-    gap: 30px; 
-    flex-wrap: wrap;
-}
-
-.feature_item {
-    flex-basis: calc(33.333% - 25px); /* Disesuaikan dengan gap */
-    min-width: 260px;
-    text-align: center;
-    padding: 25px;
-}
-
-.feature_item h3 {
-    font-size: 1.6rem;
-    margin-bottom: 12px;
-    color: #FF9F00; 
-    font-weight: 600;
-}
-
-.feature_item p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #e0e0e0; 
-}
-
-/* Our Advantages Section */
-.our_advantages_section {
-    padding: 80px 40px;
-    text-align: center;
-    background-color: #FFFFFF;
-}
-
-.our_advantages_section h2 {
-    font-size: 2.5rem;
-    color: #2A3B47; 
-    margin-bottom: 60px; 
-    position: relative;
-    display: inline-block;
-    font-weight: 600;
-}
-
-.our_advantages_section h2::after {
-    content: '';
-    position: absolute;
-    bottom: -15px; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px; 
-    height: 4px;
-    background-color: #FF9F00; 
-}
-
-.advantages_content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    flex-wrap: wrap;
-    text-align: left;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.advantages_list {
-    flex: 1.2;
-    min-width: 320px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.advantage_item {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-}
-.advantage_item:hover {
-    background-color: #f9f9f9; 
-}
-
-.advantage_icon {
-    width: 45px; 
-    height: 45px;
-    margin-top: 5px;
-}
-
-.advantage_item h4 {
-    font-size: 1.25rem;
-    color: #2A3B47; 
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.advantage_item p {
-    font-size: 0.95rem;
-    color: #555; 
-    line-height: 1.7;
-}
-
-.advantages_image {
-    flex: 1;
-    min-width: 320px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.advantages_image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-/* Footer Styles */
-.site_footer {
-    background-color: #1e2a33; 
-    color: #a0a0a0;
-    padding: 50px 40px 30px; 
-    font-size: 0.9rem;
-    margin-top: 0; 
-}
-
-.footer_content_wrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto 40px auto;
-}
-
-.footer_logo_subscribe {
-    flex: 1.5;
-    min-width: 280px;
-}
-
-.footer_logo {
-    height: 35px;
+.dashboard_main_content {
+    padding: 20px;
+    max-width: 1300px; 
+    margin: 0 auto; 
+    background-color: #2E6A6A;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-top: 70px; 
     margin-bottom: 20px;
 }
 
-.footer_logo_subscribe h4,
-.footer_links h4,
-.footer_social h4 {
-    color: #ffffff;
-    font-size: 1.15rem;
-    margin-bottom: 18px;
-    font-weight: 500;
-}
-
-.subscribe_form {
+.search_bar_container_dashboard {
     display: flex;
     align-items: center;
-    margin-top: 12px;
-    max-width: 320px;
+    background-color: #FFFFFF;
+    border-radius: 25px; 
+    padding: 8px 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 700px; 
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.subscribe_form input[type="email"] {
+.search_bar_container_dashboard input[type="text"] {
     flex-grow: 1;
-    padding: 12px 15px;
-    border: 1px solid #444;
-    background-color: #333;
-    color: #fff;
-    border-radius: 6px 0 0 6px;
+    border: none;
     outline: none;
     font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    padding: 8px;
+    color: #333;
+}
+.search_bar_container_dashboard input[type="text"]::placeholder {
+    color: #888;
 }
 
-.subscribe_form button {
-    padding: 12px 15px;
-    background-color: #FF9F00;
+.search_icon_dashboard {
+    background-color: transparent;
     border: none;
+    padding: 5px;
     cursor: pointer;
-    border-radius: 0 6px 6px 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.subscribe_form button img {
-    width: 20px;
+.search_icon_dashboard img {
+    width: 20px; 
     height: 20px;
+    
 }
 
-.footer_links {
-    flex: 1;
-    min-width: 160px;
+.status_filter_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; 
+    margin-bottom: 30px;
 }
 
-.footer_links ul {
-    list-style: none;
-}
-
-.footer_links ul li {
-    margin-bottom: 10px;
-}
-
-.footer_links ul li a {
-    color: #a0a0a0;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer_links ul li a:hover {
-    color: #FF9F00;
-}
-
-.footer_social {
-    flex: 1;
-    min-width: 180px;
-}
-
-.social_icons a {
-    margin-right: 15px;
-    display: inline-block;
-}
-
-.social_icons img {
-    width: 24px;
-    height: 24px;
-    opacity: 0.8;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.social_icons a:hover img {
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-/* Floating Buttons (Opsional, jika ingin ditambahkan kembali) */
-#help_button, #scroll_to_top_button {
-    position: fixed;
-    bottom: 25px;
-    background-color: #FF9F00;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 1.6rem;
-    font-weight: bold;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+.status_btn {
+    background-color: #FFFFFF;
+    color: #2E6A6A; 
+    border: 2px solid #2E6A6A; 
+    padding: 10px 25px;
+    border-radius: 20px; 
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    z-index: 999;
-    display: flex; /* Untuk centering ikon */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.status_btn:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.status_btn.active_status {
+    background-color: #FF9F00; 
+    color: #FFFFFF;
+    border-color: #FF9F00;
+}
+
+.case_cards_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 25px; 
+}
+
+.case_card {
+    background-color: #FFFFFF;
+    border-radius: 12px; 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex; 
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.case_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.card_image_container {
+    width: 100%;
+    height: 200px; 
+}
+.card_image_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+}
+.case_number_badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    min-width: 24px;
+    min-height: 24px;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
-#help_button:hover, #scroll_to_top_button:hover {
-    background-color: #e28f00;
-    transform: scale(1.05) translateY(-2px);
+
+
+.card_info {
+    padding: 15px;
+    font-size: 0.85rem; 
+    color: #555;
+    flex-grow: 1; 
 }
 
-#help_button {
-    right: 25px;
+.card_info h4 {
+    font-size: 1.2rem;
+    color: #2E6A6A; 
+    margin-bottom: 5px;
+    font-weight: 600;
 }
 
-#scroll_to_top_button {
-    right: 90px; 
-    display: none; 
+.pet_status_title {
+    font-size: 0.9rem;
+    color: #FF9F00; 
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-transform: capitalize;
 }
 
+.info_item {
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+.info_item .label {
+    font-weight: 500;
+    color: #333;
+}
+
+
+
+.sticky_header {
+    background-color: #FF9F00; 
+    padding: 0 30px; 
+}
+.sticky_header ul li a.active {
+    background-color: #FFFFFF; 
+    color: #FF9F00; 
+}
 
 /* Responsive adjustments */
-@media (max-width: 992px) {
-    .sticky_header {
-        padding: 0 20px;
-    }
-    .sticky_header ul {
-        gap: 15px;
-    }
-    .feature_item {
-        flex-basis: calc(50% - 20px);
-    }
-    .advantages_content {
-        gap: 30px;
-    }
-}
-
 @media (max-width: 768px) {
-    body {
-        padding-top: 60px; 
+    .dashboard_main_content {
+        padding: 15px;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
-    .sticky_header {
-        height: 60px;
-        padding: 0 15px;
+    .search_bar_container_dashboard {
+        max-width: 100%;
+        margin-bottom: 20px;
     }
-    .sticky_header ul {
+    .status_filter_buttons {
         gap: 10px;
+        flex-wrap: wrap; 
+        margin-bottom: 20px;
     }
-    .sticky_header ul li a {
-        font-size: 0.9rem;
-        padding: 6px 8px;
+    .status_btn {
+        padding: 8px 18px;
+        font-size: 0.85rem;
     }
-    .navbar_logo {
-        height: 30px;
-    }
-
-    .hero_section {
-        min-height: 300px;
-        padding: 40px 15px;
-    }
-    .search_container {
-        max-width: 90%;
-        padding: 10px 15px;
-    }
-    .search_button_main {
-        padding: 10px 25px;
-        font-size: 0.95rem;
-    }
-
-    .key_features_section {
-        padding: 40px 20px;
+    .case_cards_grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
     }
-    .feature_item {
-        flex-basis: 100%; 
-        padding: 20px;
+    .card_image_container {
+        height: 180px;
     }
-
-    .our_advantages_section {
-        padding: 60px 20px;
-    }
-    .our_advantages_section h2 {
-        font-size: 2rem;
-        margin-bottom: 40px;
-    }
-    .advantages_content {
-        flex-direction: column;
-    }
-    .advantages_image img {
-        max-width: 90%;
-        margin-top: 30px;
-    }
-
-    .footer_content_wrapper {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 30px;
-    }
-    .footer_logo_subscribe, .footer_links, .footer_social {
-        width: 100%;
-        max-width: 350px;
-    }
-    .subscribe_form {
-        margin: 12px auto;
+    .card_info h4 {
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .sticky_header ul li:not(.auth_buttons):not(:first-child) { 
-        display: none;
+    .case_cards_grid {
+        grid-template-columns: 1fr;
     }
-     .sticky_header ul li.auth_buttons {
-        margin-left: auto; 
+    .card_image_container {
+        height: 220px; 
     }
-
-    .search_container input[type="text"] {
-        font-size: 0.9rem;
+     .status_filter_buttons {
+        justify-content: space-around; 
     }
-    .search_button_main {
-        font-size: 0.9rem;
-    }
-
-    .our_advantages_section h2 {
-        font-size: 1.8rem;
-    }
-    .advantage_item h4 {
-        font-size: 1.1rem;
-    }
-    .advantage_item p {
-        font-size: 0.9rem;
-    }
-    .advantage_icon {
-        width: 40px;
-        height: 40px;
+    .status_btn {
+        flex-grow: 1; 
+        margin: 5px; 
     }
 }

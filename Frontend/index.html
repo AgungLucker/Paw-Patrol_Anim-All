@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="index.css">
+    
 </head>
 <body>
     <header class="sticky_header"> 
@@ -20,117 +22,166 @@
         </ul>
     </header>
 
-    <main>
-        <section class="hero_section">
-            <div class="search_container">
-                <img src="assets/search_icon_custom.png" alt="Ikon Pencarian" class="search_icon_custom">
-                <input type="text" placeholder="Cat too beautiful !">
-            </div>
-            <button class="search_button_main">Search</button>
-        </section>
+    <main class="dashboard_main_content">
+        <div class="search_bar_container_dashboard">
+            <input type="text" placeholder="Cari hewan kamu yang hilang disini">
+            <button class="search_icon_dashboard">
+                <img src="assets/searchicon.png" alt="Ikon Cari"> </button>
+        </div>
 
-        <section class="key_features_section">
-            <div class="feature_item">
-                <h3>Fast</h3>
-                <p>Allows for up to 1000 calls per minute.</p>
-            </div>
-            <div class="feature_item">
-                <h3>Optimized</h3>
-                <p>Continuous update and direction of interruption.</p>
-            </div>
-            <div class="feature_item">
-                <h3>Free</h3>
-                <p>And always remained so to allow the animals to be adopted more easily.</p>
-            </div>
-        </section>
+        <div class="status_filter_buttons">
+            <button class="status_btn active_status" data-status="lost">Lost</button>
+            <button class="status_btn" data-status="found">Found</button>
+            <button class="status_btn" data-status="returned">Returned</button>
+        </div>
 
-        <section class="our_advantages_section">
-            <h2>Our Advantages</h2>
-            <div class="advantages_content">
-                <div class="advantages_list">
-                    <div class="advantage_item">
-                        <img src="assets/icon_easy.png" alt="Ikon Mudah" class="advantage_icon">
-                        <div>
-                            <h4>Easy</h4>
-                            <p>An interface that is easy to use even for beginners.</p>
-                        </div>
-                    </div>
-                    <div class="advantage_item">
-                        <img src="assets/icon_intuitive.png" alt="Ikon Intuitif" class="advantage_icon">
-                        <div>
-                            <h4>Intuitive</h4>
-                            <p>An api usable even by non-developers.</p>
-                        </div>
-                    </div>
-                    <div class="advantage_item">
-                        <img src="assets/icon_flexible.png" alt="Ikon Fleksibel" class="advantage_icon">
-                        <div>
-                            <h4>Flexible</h4>
-                            <p>Can be integrated on several systems for all your needs.</p>
-                        </div>
-                    </div>
-                    <div class="advantage_item">
-                        <img src="assets/icon_reliable.png" alt="Ikon Andal" class="advantage_icon">
-                        <div>
-                            <h4>Reliable</h4>
-                            <p>You just have to see our statue page to understand why we are so appreciated.</p>
-                        </div>
-                    </div>
+        <div class="case_cards_grid">
+            <div class="case_card" data-status-card="lost">
+                <div class="card_image_container">
+                    <img src="assets/Kucing.png" alt="Kucing Putih Snowie">
+                    <span class="case_number_badge">1</span>
                 </div>
-                <div class="advantages_image">
-                    <img src="assets/laptop_pro_gaming.png" alt="Laptop Macbook Pro menampilkan kode">
+                <div class="card_info">
+                    <h4>Snowie</h4>
+                    <p class="pet_status_title">Lost Kucing</p>
+                    <p class="info_item"><span class="label">Terakhir ditemukan di:</span> Gedung GKU 1</p>
+                    <p class="info_item"><span class="label">Tanggal hilang:</span> 28 Mei 2025</p>
+                    <p class="info_item"><span class="label">Alamat pemilik:</span> Jl. Kenangan No.10</p>
+                    <p class="info_item"><span class="label">Kontak:</span> 0812-3456-7890</p>
+                    <p class="info_item"><span class="label">Deskripsi:</span> Kucing putih berbulu lebat, mata biru.</p>
                 </div>
             </div>
-        </section>
+
+            <div class="case_card" data-status-card="lost">
+                <div class="card_image_container">
+                    <img src="assets/Bebek.png" alt="Bebek Kuning">
+                    <span class="case_number_badge">2</span>
+                </div>
+                <div class="card_info">
+                    <h4>Lost Bebek</h4>
+                    <p class="pet_status_title">Lost Bebek</p>
+                    <p class="info_item"><span class="label">Terakhir ditemukan di:</span> Gedung A</p>
+                    <p class="info_item"><span class="label">Tanggal hilang:</span> 29 Mei 2025</p>
+                    <p class="info_item"><span class="label">Alamat pemilik:</span> Jl. Sayang No.7</p>
+                    <p class="info_item"><span class="label">Kontak:</span> 0811-3333-7879</p>
+                    <p class="info_item"><span class="label">Deskripsi:</span> Bebek berbulu kuning.</p>
+                </div>
+            </div>
+
+            <div class="case_card" data-status-card="lost">
+                 <div class="card_image_container">
+                    <img src="assets/Ayam.png" alt="Ayam Coklat">
+                    <span class="case_number_badge">3</span>
+                </div>
+                <div class="card_info">
+                    <h4>Lost Ayam</h4>
+                    <p class="pet_status_title">Lost Ayam</p>
+                    <p class="info_item"><span class="label">Terakhir ditemukan di:</span> Gedung B</p>
+                    <p class="info_item"><span class="label">Tanggal hilang:</span> 29 Mei 2025</p>
+                    <p class="info_item"><span class="label">Alamat pemilik:</span> Jl. Caringin No.15</p>
+                    <p class="info_item"><span class="label">Kontak:</span> 0822-4444-8989</p>
+                    <p class="info_item"><span class="label">Deskripsi:</span> Ayam berbulu kuning.</p>
+                </div>
+            </div>
+
+            
+             <div class="case_card" data-status-card="lost">
+                 <div class="card_image_container">
+                    <img src="assets/Kucing Oren.png" alt="Kucing Oren">
+                    <span class="case_number_badge">4</span>
+                </div>
+                <div class="card_info">
+                    <h4>Lost Kucing</h4>
+                    <p class="pet_status_title">Lost Kucing</p>
+                    <p class="info_item"><span class="label">Terakhir ditemukan di:</span> GKU 2</p>
+                    <p class="info_item"><span class="label">Tanggal hilang:</span> 30 Mei 2025</p>
+                    <p class="info_item"><span class="label">Alamat pemilik:</span> Jl. Ciseke No.3</p>
+                    <p class="info_item"><span class="label">Kontak:</span> 0878-0808-0000</p>
+                    <p class="info_item"><span class="label">Deskripsi:</span> Kucing berbulu cokelat.</p>
+                </div>
+            </div>
+
+            <div class="case_card" data-status-card="lost">
+                <div class="card_image_container">
+                    <img src="assets/Ikan.png" alt="Ikan Lucu">
+                    <span class="case_number_badge">5</span>
+                </div>
+                <div class="card_info">
+                    <h4>Lost Ikan</h4>
+                    <p class="pet_status_title">Lost Ikan</p>
+                    <p class="info_item"><span class="label">Terakhir ditemukan di:</span> Labtek Biru</p>
+                    <p class="info_item"><span class="label">Tanggal hilang:</span> 31 Mei 2025</p>
+                    <p class="info_item"><span class="label">Alamat pemilik:</span> Jl. Cisitu No.8</p>
+                    <p class="info_item"><span class="label">Kontak:</span> 0899-1212-7000</p>
+                    <p class="info_item"><span class="label">Deskripsi:</span> Ikan bercorak lucu.</p>
+                </div>
+            </div>
+
+            <div class="case_card" data-status-card="lost">
+                <div class="card_image_container">
+                    <img src="assets/Tupai.png" alt="Tupai">
+                    <span class="case_number_badge">6</span>
+                </div>
+                <div class="card_info">
+                    <h4>Lost Tupai</h4>
+                    <p class="pet_status_title">Lost Tupai</p>
+                    <p class="info_item"><span class="label">Terakhir ditemukan di:</span> Kantin</p>
+                    <p class="info_item"><span class="label">Tanggal hilang:</span> 31 Mei 2025</p>
+                    <p class="info_item"><span class="label">Alamat pemilik:</span> Jl. Sayang No. 7</p>
+                    <p class="info_item"><span class="label">Kontak:</span> 0877-0000-9876</p>
+                    <p class="info_item"><span class="label">Deskripsi:</span> Tupai berbulu cokelat.</p>
+                </div>
+            </div>
+
+            <div class="case_card" data-status-card="found" style="display:none;">
+                <div class="card_image_container">
+                    <img src="assets/Burung Hijau.png" alt="Burung Hijau Ditemukan">
+                    <span class="case_number_badge">1</span>
+                </div>
+                 <div class="card_info">
+                    <h4>Found Burung</h4>
+                    <p class="pet_status_title">Found Burung</p>
+                    <p class="info_item"><span class="label">Ditemukan di:</span> GKU 3</p>
+                    <p class="info_item"><span class="label">Tanggal ditemukan:</span> 31 Mei 2025</p>
+                    <p class="info_item"><span class="label">Kontak penemu:</span> 0890-0000-1222</p>
+                    <p class="info_item"><span class="label">Deskripsi:</span> Burung hijau.</p>
+                </div>
+            </div>
+
+        </div>
     </main>
 
-    <footer class="site_footer">
-        <div class="footer_content_wrapper">
-            <div class="footer_logo_subscribe">
-                <img src="assets/logo.svg" alt="Logo Animall Footer" class="footer_logo">
-                <h4>Subscribe to our newsletter</h4>
-                <form class="subscribe_form">
-                    <input type="email" placeholder="Email address" required>
-                    <button type="submit" aria-label="Subscribe"><img src="assets/arrow_right.png" alt="Tombol subscribe"></button>
-                </form>
-            </div>
-            <div class="footer_links">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#">Animall</a></li>
-                    <li><a href="#">API</a></li>
-                </ul>
-            </div>
-            <div class="footer_links">
-                <h4>About us</h4> <ul>
-                    <li><a href="#">Our Story</a></li> <li><a href="#our_advantages_section">Advantage</a></li>
-                </ul>
-            </div>
-            <div class="footer_social">
-                <h4>Follow Us</h4>
-                <div class="social_icons">
-                    <a href="#" aria-label="Facebook"><img src="assets/facebook_icon.png" alt="Facebook"></a>
-                    <a href="#" aria-label="Twitter"><img src="assets/twitter_icon.png" alt="Twitter"></a>
-                    <a href="#" aria-label="Instagram"><img src="assets/instagram_icon.png" alt="Instagram"></a>
-                </div>
-            </div>
-        </div>
-        </footer>
-     <script>
-    const scrollToTopButton = document.getElementById('scroll_to_top_button');
-    if (scrollToTopButton) {
-        window.onscroll = function() {
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            scrollToTopButton.style.display = "block";
-        } else {
-            scrollToTopButton.style.display = "none";
-        }
-    };
-    scrollToTopButton.onclick = function() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    };
-    }
-    </script> 
+    <script>
+        // JavaScript 
+        document.addEventListener('DOMContentLoaded', function () {
+            const statusButtons = document.querySelectorAll('.status_btn');
+            const caseCards = document.querySelectorAll('.case_card');
+
+            statusButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    
+                    statusButtons.forEach(btn => btn.classList.remove('active_status'));
+                    
+                    this.classList.add('active_status');
+
+                    const selectedStatus = this.dataset.status;
+
+                    caseCards.forEach(card => {
+                        if (selectedStatus === 'all' || card.dataset.statusCard === selectedStatus) {
+                            card.style.display = 'block'; 
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            
+            const initialActiveButton = document.querySelector('.status_btn[data-status="lost"]');
+            if (initialActiveButton) {
+                initialActiveButton.click();
+            }
+        });
+    </script>
 </body>
 </html>
