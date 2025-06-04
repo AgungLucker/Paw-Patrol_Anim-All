@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Home</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="index.css">
     
 </head>
@@ -21,10 +20,16 @@
             <li><a href="aboutUs.html">About Us</a></li>
         </ul>
     </header>
-
+     <section class="hero_section">
+        <div class="hero_content">
+            <h1>Anim'All</h1>
+            <p>Platform pilihan anda untuk melaporkan dan mencari hewan hilang/ditemukan di sekitar Jatinangor.</p>
+        </div>
+        <div class="section_transition"></div>
+    </section>
     <main class="dashboard_main_content">
         <div class="search_bar_container_dashboard">
-            <input type="text" placeholder="Cari hewan kamu yang hilang disini">
+            <input id="searchInput" type="text" placeholder="Cari hewan kamu yang hilang disini">
             <button class="search_icon_dashboard">
                 <img src="assets/searchicon.png" alt="Ikon Cari"> </button>
         </div>
@@ -34,13 +39,16 @@
             <button class="status_btn" data-status="found">Found</button>
             <button class="status_btn" data-status="returned">Returned</button>
         </div>
-
+        <div id="message_container" class="message_container"><</div>
         <div class="case_cards_grid">
         </div>
     </main>
     <script>
         const API_URL = 'http://localhost:3000/api/cases';
         let allCases = [];
+
+        let currentActiveStatus = 'lost';
+        let currentSearchQuery = '';
 
         const createCaseCard = (caseData) => {
             const card = document.createElement('div');
@@ -67,29 +75,44 @@
                     <img src="${caseData.picture}" alt="${caseData.name}">
                     <span class="case_number_badge">${caseData.reportID}</span>   
                 </div>
-                <div class="card-info">
+                <div class="card_info">
                     <h4>${caseData.name}</h4>
-                    <p class="pet_status_title">${animalStatus}</p>
-                    <p class="info_item"><span class="label">Deskripsi:</span> ${caseData.description}</p>
-                    <p class="info_item"><span class="label">Terakhir ditemukan di:</span> ${caseData.area}</p>
+                    <div class="pet_status_box"><p class="pet_status_title">${animalStatus}</p></div>
+                    <div class="date_found"><p class="info_item"><span class="label">Terakhir ditemukan di ${caseData.area}</span></p></div>
+                    <p class="info_item"><span class="label">Tanggal hilang:</span> ${lostDate}</p>
                     <p class="info_item"><span class="label">Alamat pemilik:</span> ${caseData.ownerAddress}</p>
                     <p class="info_item"><span class="label">Kontak:</span> ${caseData.ownerContact}</p>
+                    <p class="info_item"><span class="label">Deskripsi:</span> ${caseData.description}</p>
                 </div>
             `;
             return card;
         }
 
-        const displayCasesByStatus = (selectedStatus) => {
+        const displayCases = (selectedStatus, searchQuery) => {
             const caseCardsGrid = document.querySelector('.case_cards_grid');
             caseCardsGrid.innerHTML = ' ';
 
-            let filteredCases = allCases;
-            if (selectedStatus !== 'all') { /// hanya untuk filter saja, tidak ada all
-                filteredCases = allCases.filter(caseData => caseData.status === selectedStatus);
+            let filteredCases = allCases.filter(caseData => caseData.status === selectedStatus);
+            const messageContainer = document.getElementById('message_container');
+            messageContainer.innerHTML = ' ';
+
+            if (searchQuery && searchQuery.trim() !== '') {
+                filteredCases = filteredCases.filter(caseData =>
+                    caseData.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    caseData.speciesType.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    caseData.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    caseData.area.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    caseData.ownerAddress.toLowerCase().includes(searchQuery.toLowerCase())
+                );
             }
 
             if (filteredCases.length === 0) {
-                caseCardsGrid.innerHTML =  `<p>Tidak ada Case yang  ${selectedStatus} saat ini.</p>`;
+                let msg = `Tidak ada Case yang ${status} saat ini.`;
+                if (searchQuery) {
+                    msg = `Tidak ada hasil untuk "${searchQuery}" `;
+                }   
+                messageContainer.innerHTML =  `<p>${msg}</p>`;
+                return;
             }
 
             filteredCases.forEach(caseData => {
@@ -99,8 +122,8 @@
         }
 
         const fetchAllCases = async () => {
-            const caseCardsGrid = document.querySelector('.case_cards_grid');
-            caseCardsGrid.innerHTML = 'Loading cases...';
+            const messageContainer = document.getElementById('message_container');
+            messageContainer.innerHTML = 'Loading cases...';
 
             try {
                 const res = await fetch(API_URL);
@@ -108,17 +131,17 @@
                 if (!res.ok) {
                     alert('Gagal mengambil data cases : ' + (data.message || 'Error tidak diketahui.'));
                     console.error('Error fetch:', data);
-                    caseCardsGrid.innerHTML = 'Gagal memuat Cases. Silakan coba lagi.';
+                    messageContainer.innerHTML = 'Gagal memuat Cases. Silakan coba lagi.';
                     return;
                 }
                 allCases = data;
                 const initActiveButton = document.querySelector('.status_btn.active_status');
                 const initStatus = initActiveButton ? initActiveButton.dataset.status : 'lost';
-                displayCasesByStatus(initStatus);
+                displayCases(initStatus, currentSearchQuery);
             } catch (err) {
                 console.error('unexpected error:', err);
                 alert('Terjadi unexpected error');
-                caseCardsGrid.innerHTML = 'Terjadi kesalahan saat memuat kasus.';
+                messageContainer.innerHTML = 'Terjadi kesalahan saat memuat kasus.';
             }
 
 
@@ -126,6 +149,7 @@
         // JavaScript 
         document.addEventListener('DOMContentLoaded', function () {
             const statusButtons = document.querySelectorAll('.status_btn');
+            const searchInput = document.getElementById('searchInput');
 
             statusButtons.forEach(button => {
                 button.addEventListener('click', function () {
@@ -135,10 +159,17 @@
                     this.classList.add('active_status');
 
                     const selectedStatus = this.dataset.status;
+                    currentActiveStatus = this.dataset.status;
                     
-                    displayCasesByStatus(selectedStatus);
+                    displayCases(selectedStatus, currentSearchQuery);
                     
                 });
+            });
+
+            searchInput.addEventListener('keyup', function (event) {
+                currentSearchQuery = event.target.value.trim();
+                displayCases(currentActiveStatus, currentSearchQuery); 
+
             });
 
             fetchAllCases();

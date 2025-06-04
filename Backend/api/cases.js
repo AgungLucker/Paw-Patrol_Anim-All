@@ -73,7 +73,7 @@ router.post('/', upload.single('picture'), [
 // GET
 router.get('/', async (req, res) => {
     try {
-        const cases = await Case.find().select('-confirmationCode -__v').sort({ lostDate: -1 }); // ambil semua data case, kecuali confirmationCode
+        const cases = await Case.find().select('-confirmationCode -__v').sort({ reportID: 1, lostDate: -1 }); // ambil semua data case, kecuali confirmationCode
         res.json(cases);
     } catch (err) {
         console.error("Error get:", err);
