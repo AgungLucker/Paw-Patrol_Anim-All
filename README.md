@@ -54,10 +54,10 @@ Kelompok Paw Patrol (7)
 ---
 
 ## Program Requirements
-### Backend (Go)
+### Frontend
 - Open Live Server Extension (for accessing web)    
 
-### Backend (Next.js)
+### Backend
 - Node.js: Versi LTS (Long Term Support)
 - Express JS (from NPM)
 ### Database
