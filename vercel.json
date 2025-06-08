@@ -1,15 +1,13 @@
-
 {
   "version": 2,
   "builds": [
-
     {
       "src": "Backend/api/index.js", 
       "use": "@vercel/node@3.0.12", 
       "config": {
         "includeFiles": [
-          "Backend/models/**",     
-          "Backend/config/**",    
+          "Backend/models/**", 
+          "Backend/config/**", 
           "Backend/package.json", 
           "Backend/package-lock.json" 
         ]
@@ -17,12 +15,14 @@
     }
   ],
   "routes": [
-
     {
       "src": "/api/(.*)", 
       "dest": "Backend/api/index.js" 
     },
-
+    {
+      "src": "/",
+      "dest": "Frontend/index.html" 
+    },
     {
       "src": "/(.*)", 
       "dest": "Frontend/$1" 
