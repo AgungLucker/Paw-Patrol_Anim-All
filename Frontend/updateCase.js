@@ -77,7 +77,7 @@ document.getElementById('update_form').addEventListener('submit', async function
 
 
 
-    const endpoint = `http://localhost:3000/api/cases/${reportID}`;
+    const endpoint = `/api/cases/${reportID}`;
     try {
         const response = await fetch(endpoint, {
             method: 'PUT',

@@ -8,14 +8,22 @@ require('dotenv').config();
 const connectDB = require('../config/db'); 
 const casesRouter = require('./cases'); 
 
-const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
+// connect to mongodb
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (err) {
+        console.error("Database connection failed in middleware:", err);
+        res.status(500).json({ message: "Failed to connect to database." });
+    }
+})
 
 
-connectDB();
 
 app.get('/', (req, res) => {
     res.send('Backend server berjalan');
@@ -24,6 +32,8 @@ app.get('/', (req, res) => {
 // Current test
 app.use('/api/cases', casesRouter); 
 
-app.listen(port, () => {
-    console.log(`server is listening to port ${port}`);
-});
+// app.listen(port, () => {
+    // console.log(`server is listening to port ${port}`);
+// });
+
+module.exports = app;
