@@ -12,16 +12,16 @@
           "Backend/package-lock.json" 
         ]
       }
+    },
+     {
+    "src": "Frontend/**/*",
+    "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)", 
       "dest": "Backend/api/index.js" 
-    },
-    {
-      "src": "/",
-      "dest": "Frontend/index.html" 
     },
     {
       "src": "/(.*)", 
