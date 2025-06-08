@@ -2,6 +2,8 @@
 # Tugas Besar ARC Kelompok 4
 > Website Pengaduan Hewan Hilang Jatinangor "Anim'All"
 
+![alt text](image.png)
+
 Anim'All adalah sebuah website yang melakukan pencatatan dan pengelolaan terhadap kasus hewan hilang yang ada di ada di daerah jatinangor. User dapat melihat Kasus hewan hilang yang masih hilang (lost), sudah ditemukan (found), dan dikembalikan ke owner (returned) pada dashboard web yang berisi informasi nama hewan, spesies hewan, lokasi terakhir ditemukan, alamat pemilik, kontak pemilik, beserta deskripsi hewan yang hilang. User dapat menambah kasus hewan hilang baru dengan Add Case, mengupdate data kasus dengan Update Case, dan menutup kasus dengan Close Case. Pengguna akan mendapatkan Kode Unik ketika membuat suatu case baru yang akan digunakan sebagai password oleh pengguna (sendiri atau lain) untuk melakukan Update Case dan Add Case.
 
 
@@ -77,7 +79,7 @@ Kelompok Paw Patrol (7)
   - Info Tim
   - Visi Misi
 * Navbar
-* Web Deployed to Vercel
+* Web Deployed to Vercel (see on the links below)
 
 ## How to Run
 
@@ -101,4 +103,6 @@ Kelompok Paw Patrol (7)
 ## Links
 - Project Homepage:
 (https://github.com/AgungLucker/Paw-Patrol_Anim-All)
+- Website:
+(https://paw-patrol-anim-all.vercel.app/)
 
