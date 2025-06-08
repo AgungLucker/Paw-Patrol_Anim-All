@@ -14,14 +14,6 @@
           "Backend/package-lock.json" 
         ]
       }
-    },
-
-    {
-      "src": "Frontend/**", 
-      "use": "@vercel/static-build", 
-      "config": {
-        "distDir": "Frontend"
-      }
     }
   ],
   "routes": [
