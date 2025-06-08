@@ -41,7 +41,7 @@ document.getElementById('add_form').addEventListener('submit', async function (e
     }
 
 
-    const endpoint = `http://localhost:3000/api/cases`;
+    const endpoint = `/api/cases`;
     try {
         const response = await fetch(endpoint, {
             method: 'POST',

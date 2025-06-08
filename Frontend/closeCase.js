@@ -61,7 +61,7 @@ document.getElementById('close_form').addEventListener('submit', async function 
         }
     }
     try {
-        const statusEndPoint = `http://localhost:3000/api/cases/${reportID}`;
+        const statusEndPoint = `/api/cases/${reportID}`;
         const statusResponse = await fetch(statusEndPoint);
         const statusData = await statusResponse.json();
 
@@ -76,7 +76,7 @@ document.getElementById('close_form').addEventListener('submit', async function 
             alert('status case bukan found');
             return;
         }
-        const endpoint = `http://localhost:3000/api/cases/${reportID}`;
+        const endpoint = `/api/cases/${reportID}`;
         try {
             const response = await fetch(endpoint, {
                 method: 'PUT',
